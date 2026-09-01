@@ -3,7 +3,8 @@
 import { Component, NgZone, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {   IonHeader,
+import {
+  IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
@@ -15,7 +16,8 @@ import {   IonHeader,
   IonItemSliding,
   IonItemOptions,
   IonItemOption,
-  AlertController, } from '@ionic/angular';
+  AlertController,
+} from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ClienteService } from '../../services/cliente';
 import { Cliente } from '../../models/cliente.model';
@@ -23,7 +25,8 @@ import { Cliente } from '../../models/cliente.model';
 @Component({
   selector: 'app-agregar-cliente',
   standalone: true,
-  imports: [ CommonModule,
+  imports: [
+    CommonModule,
     FormsModule,
     IonHeader,
     IonToolbar,
@@ -36,7 +39,8 @@ import { Cliente } from '../../models/cliente.model';
     IonList,
     IonItemSliding,
     IonItemOptions,
-    IonItemOption,],
+    IonItemOption,
+  ],
   templateUrl: './agregar-cliente.page.html',
   styleUrls: ['./agregar-cliente.page.scss'],
 })
@@ -48,7 +52,7 @@ export class AgregarClientePage implements OnInit {
   constructor(
     private clienteService: ClienteService,
     private alertCtrl: AlertController,
-    private router: Router 
+    private router: Router,
   ) {}
 
   async ngOnInit() {
@@ -56,7 +60,7 @@ export class AgregarClientePage implements OnInit {
   }
 
   async cargarClientes() {
-   const data = await this.clienteService.obtenerClientes();
+    const data = await this.clienteService.obtenerClientes();
     this.clientes.set(data);
   }
 
@@ -71,8 +75,7 @@ export class AgregarClientePage implements OnInit {
       ultimosDigitos: this.ultimosDigitos,
     });
 
-    setTimeout( async () => {
-      
+    setTimeout(async () => {
       this.nombre = '';
       this.ultimosDigitos = '';
       await this.cargarClientes();
@@ -95,5 +98,29 @@ export class AgregarClientePage implements OnInit {
 
   irAPagoForm(cliente: Cliente) {
     this.router.navigate(['/pages/pago-form'], { state: { cliente } });
+  }
+
+  clickInstalar() {
+    let deferredPrompt: any;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+
+      // Muestra un botón de instalación
+      const installBtn: any = document.getElementById('installBtn');
+      installBtn.style.display = 'block';
+
+      installBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const result = await deferredPrompt.userChoice;
+          if (result.outcome === 'accepted') {
+            console.log('Usuario aceptó la instalación');
+          }
+          deferredPrompt = null;
+        }
+      });
+    });
   }
 }
