@@ -3,6 +3,7 @@ compatibility_date = "2026-09-01"
 
 [assets]
 directory = "./dist/osito-pay"
+not_found_handling = "single-page-application"
 
 [build]
 command = "npm run build:cloudflare"
