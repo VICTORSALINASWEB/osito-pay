@@ -16,12 +16,9 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": {
-              "base": "www",
-              "browser": ""
-            },
+            "outputPath": "dist/osito-pay",
             "index": "src/index.html",
             "polyfills": [],
             "tsConfig": "tsconfig.app.json",

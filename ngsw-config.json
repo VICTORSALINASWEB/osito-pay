@@ -26,5 +26,19 @@
         ]
       }
     }
+  ],
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\/assets\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\/manifest\.json$"
+    }
   ]
 }

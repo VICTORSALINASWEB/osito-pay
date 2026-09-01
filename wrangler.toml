@@ -1,4 +1,9 @@
- name = "osito-pay" 
- compatibility_date = "2026-09-01"
- [assets]
- directory = "./www"
+name = "osito-pay"
+compatibility_date = "2026-09-01"
+
+[assets]
+directory = "./dist/osito-pay"
+binding = "ASSETS"
+
+[build]
+command = "npm run build:cloudflare"
