@@ -1,0 +1,7 @@
+{
+  "name": "osito-pay",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
