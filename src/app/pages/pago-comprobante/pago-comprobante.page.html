@@ -1,0 +1,73 @@
+<ion-content>
+@if (pago) {
+<main class="receipt">
+
+        <!-- ICONO -->
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12.5L9.5 17L19 7"></path>
+            </svg>
+        </div>
+
+        <!-- TITULO -->
+        <h1 class="success-title">¡Sipeaste!</h1>
+
+        <!-- MONTO -->
+        <div class="amount">
+            <span class="currency">S/</span>
+            <span class="price">{{ pago.monto | number:'1.2-2' }}</span>
+        </div>
+
+        <!-- TARJETA -->
+        <section class="transaction-card">
+
+            <div class="info-group">
+                <p class="label">Enviado a</p>
+                <p class="recipient-name">{{ pago.nombre }}</p> 
+            </div>
+
+            <div class="info-group">
+                <p class="label">Destino</p>
+                <p class="value">{{ pago.destino }}</p>
+            </div>
+
+            <div class="info-group">
+                <p class="label">Fecha y hora</p>
+                <p class="value">{{ pago.fecha | date:'d MMMM y - hh:mm a':'':'es-PE' }}</p>
+            </div>
+
+            <div class="info-group">
+                <p class="label">Comisión</p>
+                <span class="free">GRATIS</span>
+            </div>
+
+            <div class="info-group">
+                <p class="label">Número de operación</p>
+                <p class="value">{{ pago.numeroOperacion }}</p>
+            </div>
+
+        </section>
+
+        <!-- ACCIONES -->
+        <div class="actions">
+
+            <button class="btn-share"  >
+                Compartir constancia
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="18" cy="5" r="2.5"></circle>
+                    <circle cx="6" cy="12" r="2.5"></circle>
+                    <circle cx="18" cy="19" r="2.5"></circle>
+                    <line x1="8.2" y1="10.7" x2="15.8" y2="6.3"></line>
+                    <line x1="8.2" y1="13.3" x2="15.8" y2="17.7"></line>
+                </svg>
+            </button>
+
+            <button class="btn-inicio" (click)="irInicio()">
+                Ir a inicio
+            </button>
+
+        </div>
+
+    </main>
+} 
+</ion-content>

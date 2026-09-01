@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pages/agregar-cliente"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nuevo pago</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  @if (cliente) {
+    <h2>Pagar a</h2>
+
+    <ion-item lines="none" class="cliente-card">
+      <ion-label>
+        <h3>{{ cliente.nombre }}</h3>
+        <p>*** {{ cliente.ultimosDigitos }}</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item class="ion-margin-top">
+      <ion-label position="stacked">Monto (S/)</ion-label>
+      <ion-input
+        [(ngModel)]="monto"
+        type="number"
+        placeholder="0.00"
+      ></ion-input>
+    </ion-item>
+
+    <ion-button
+      expand="block"
+      class="ion-margin-top"
+      [disabled]="!monto || monto <= 0"
+      (click)="pagar()"
+    >
+      Pagar
+    </ion-button>
+  }
+</ion-content>

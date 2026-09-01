@@ -1,0 +1,54 @@
+<!-- agregar-cliente.page.html -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Osito Pay</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>Agregar cliente</h2>
+
+  <ion-item>
+    <ion-label position="stacked">Nombre completo</ion-label>
+    <ion-input [(ngModel)]="nombre" placeholder="Ej: Sarai Gloria de la Cruz"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Últimos 3 dígitos del celular</ion-label>
+    <ion-input
+      [(ngModel)]="ultimosDigitos"
+      type="tel"
+      maxlength="3"
+      placeholder="Ej: 089"
+    ></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="guardar()">
+    Guardar cliente
+  </ion-button>
+
+  <h2 class="ion-margin-top">Clientes guardados</h2>
+
+  @if (clientes().length > 0) {
+    <ion-list>
+      @for (cliente of clientes(); track cliente.id) {
+        <ion-item-sliding>
+          <ion-item button (click)="irAPagoForm(cliente)">
+            <ion-label>
+              <h3>{{ cliente.nombre }}</h3>
+              <p>*** {{ cliente.ultimosDigitos }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item-options side="end">
+            <ion-item-option color="danger" (click)="eliminar(cliente.id)">
+              Eliminar
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      }
+    </ion-list>
+  } @else {
+    <p class="ion-text-center ion-margin-top">Aún no hay clientes guardados.</p>
+  }
+</ion-content>
