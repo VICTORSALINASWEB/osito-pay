@@ -27,18 +27,18 @@
       }
     }
   ],
-  "navigationUrls": [
+ "navigationUrls": [
     {
       "positive": true,
-      "regex": "^\/.*$"
+      "regex": "^/.*$"
     },
     {
       "positive": false,
-      "regex": "^\/assets\/.*$"
+      "regex": "^/assets/.*$"
     },
     {
       "positive": false,
-      "regex": "^\/manifest\.json$"
+      "regex": "^/manifest\\.json$"
     }
   ]
 }
