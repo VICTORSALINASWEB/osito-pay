@@ -41,7 +41,7 @@ import { PagoService } from '../../services/pago';
 export class PagoFormPage implements OnInit {
   cliente: Cliente | null = null;
   monto: number | null = null;
-
+  destino = 'Yape'
   constructor(
     private router: Router,
     private pagoService: PagoService
@@ -60,13 +60,13 @@ export class PagoFormPage implements OnInit {
   }
 
   async pagar() {
-    if (!this.cliente || !this.monto || this.monto <= 0) return;
+    if (!this.cliente || !this.monto || this.monto <= 0 || this.destino === '') return;
 
     const pago: Pago = {
       clienteId: this.cliente.id,
       nombre: this.cliente.nombre,
       monto: this.monto,
-      destino: 'Osito Pay',
+      destino: this.destino,
       ultimosDigitos: this.cliente.ultimosDigitos,
       fecha: new Date(),
       numeroOperacion: this.pagoService.generarNumeroOperacion(),

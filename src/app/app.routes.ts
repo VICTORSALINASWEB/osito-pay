@@ -7,4 +7,5 @@ export const routes: Routes = [
   { path: 'pages/pago-comprobante', loadComponent: () => import('./pages/pago-comprobante/pago-comprobante.page').then(m => m.PagoComprobantePage) },
   { path: 'pages/agregar-cliente', loadComponent: () => import('./pages/agregar-cliente/agregar-cliente.page').then(m => m.AgregarClientePage) },
   { path: 'pages/listado-clientes', loadComponent: () => import('./pages/listado-clientes/listado-clientes.page').then(m => m.ListadoClientesPage) },
+  {path: '**',redirectTo: 'pages/agregar-cliente'}
 ];
